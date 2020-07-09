@@ -13,7 +13,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:Pn123456@192.168.2
 db = SQLAlchemy(app)
 
 @app.route('/', methods=['GET'])
-# @cross_origin()
 def index():
 
     sql_cmd = """
@@ -27,8 +26,7 @@ def index():
     response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers['Access-Control-Allow-Methods'] = '*'
     response.headers['Access-Control-Allow-Headers'] = '*'
-    # rst = make_response(query_data)
-    # rst.headers['Access-Control-Allow-Origin'] = '*'
+
 
     return response
 
