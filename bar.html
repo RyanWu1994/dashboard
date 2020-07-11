@@ -27,10 +27,10 @@
             dataType: 'json',
             headers: { 'Access-Control-Allow-Origin': '*' },
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 var test = data["result"][0]["Line"];
                 var arrar_test = [];
-                for (i = 0; i < 5; i++) {
+                for (i = 0; i < data["result"].length; i++) {
                     arrar_test.push(data["result"][i]);
                 };
                 var arrar_length = arrar_test.length
@@ -41,7 +41,6 @@
                 alert("發生錯誤")
             }
         });
-
 
         var myChart = echarts.init(document.getElementById('main'));
 
