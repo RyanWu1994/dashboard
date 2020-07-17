@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 def main_information():
 
     sql_cmd = """
-        SELECT * from main_information WHERE DATE > date_sub(now(), INTERVAL 64 hour)
+        SELECT * from main_information WHERE DATE > date_sub(now(), INTERVAL 64 HOUR) AND URL = "smtv.raccoontv.com"
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchone()
