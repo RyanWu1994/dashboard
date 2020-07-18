@@ -17,7 +17,7 @@ def main_information():
         SELECT * from main_information WHERE DATE > date_sub(now(), INTERVAL 64 HOUR) AND URL = "smtv.raccoontv.com"
         """
     query_data = db.engine.execute(sql_cmd)
-    date = query_data.fetchone()
+    date = query_data.fetchall()
     Date = []
     Line = []
     Fastest_node = []
