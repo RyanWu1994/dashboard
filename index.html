@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts_Bar</title>
+    <!-- 引入 echarts.js -->
+    <script src="js/echarts.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<style>
+    .container{
+        width: 1000px;
+        height: 500px;
+        background-color: aquamarine;
+        display: flex;
+    }
+
+    #main{
+        height: 500px;
+        width: 500px ;
+        margin: 0 10px;
+    }
+</style>
+
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
+<div class="container">
+    <!-- <div class="aa">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita aut accusamus ratione, amet, excepturi odio quaerat dolorem quis odit ullam illum tempore? Nisi minus facere laboriosam numquam quod. Aliquam, natus!</div> -->
+    <div id="main"></div>
+    <div id="main"></div>
+    <!-- <div class="aa">Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim neque suscipit quasi, fuga possimus veritatis nihil explicabo omnis eligendi doloribus perferendis culpa nam nemo voluptatibus corporis natus dignissimos debitis!</div> -->
+</div>
+        <!-- <div id="main" style="width: 1000;height:600px;"></div> -->
+        
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+
+        $.ajax({
+            url: "http://192.168.0.12:5050/Telecom",
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (data) {
+
+                console.log(data)
+
+                var myChart = echarts.init(document.getElementById('main'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '17EC 域名監控 ' + data['URL'] + " 电信"
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        triggerOn: "mousemove",
+                    },
+                    legend: {
+                        data: ['最快節點秒數', '最慢節點秒數', '平均響應']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: data['Date']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: true,
+                        position: "left",
+                        offset: 0
+                    },
+                    series: [{
+                            name: '最快節點秒數',
+                            type: 'line',
+                            data: data['Fastest_node_seconds'],
+                        },
+                        {
+                            name: '最慢節點秒數',
+                            type: 'line',
+                            data: data['Slowest_node_seconds']
+                        },
+                        {
+                            name: '平均響應',
+                            type: 'line',
+                            data: data['Average_response']
+                        },
+
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+
+            },
+
+
+            error: function () {
+                alert("發生錯誤")
+            }
+        });
+    </script>
+</body>
+
+</html>
