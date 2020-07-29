@@ -84,7 +84,7 @@
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: arrar_Fastest_node
+                        data: arrar_Date
                     },
                     yAxis: {
                         type: 'value',
@@ -96,29 +96,26 @@
                         {
                             name: '最快節點秒數',
                             type: 'line',
-                            // stack: '总量',
                             data: arrar_Fastest_node_seconds,
                         },
                         {
                             name: '最慢節點秒數',
                             type: 'line',
-                            // stack: '总量',
                             data: arrar_Slowest_node_seconds
                         },
                         {
                             name: '平均響應',
                             type: 'line',
-                            // stack: '总量',
                             data: arrar_Average_response
                         },
                         {
                             name: '最快節點',
-                            type: 'bar',
+                            type: 'line',
                             data: arrar_Fastest_node
                         },
                     ]
                 };
-
+                
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
 
@@ -129,8 +126,6 @@
                 alert("發生錯誤")
             }
         });
-
-
 
 
     </script>

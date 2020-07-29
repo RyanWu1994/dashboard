@@ -19,7 +19,7 @@ db = SQLAlchemy(app)
 def main_information():
 
     sql_cmd = """
-        SELECT * from CronJob
+        SELECT * FROM CronJob WHERE DATE > "2020-07-28"
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
