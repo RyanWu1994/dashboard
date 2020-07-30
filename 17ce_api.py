@@ -3,7 +3,7 @@ from flask import Flask,jsonify,request,make_response
 from flask_cors import cross_origin,CORS
 
 # 設定DB連線
-DB_host = "192.168.0.19"
+DB_host = "192.168.22.110"
 DB_user = "root"
 DB_passwd = "Pn123456"
 DB_port = "3306"
@@ -15,12 +15,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://" + DB_user + ":"+ DB_passwd +"@"+ DB_host +":"+ DB_port +"/"+ DB_name
 db = SQLAlchemy(app)
 
-# 电信
-@app.route('/电信', methods=['GET'])
-def main_information_1():
+# 电信 Telecom
+@app.route('/Telecom', methods=['GET'])
+def main_information_Telecom():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '电信'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '电信' AND DATE > '2020-07-28'
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -70,12 +70,12 @@ def main_information_1():
     return response
 
 #-----------------------------------------------------------------------
-# 联通
-@app.route('/联通', methods=['GET'])
-def main_information_2():
+# 联通 Unicom
+@app.route('/Unicom', methods=['GET'])
+def main_information_Unicom():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '联通'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '联通' AND DATE > '2020-07-28'
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -125,12 +125,12 @@ def main_information_2():
     return response
 
 #-----------------------------------------------------------------------
-# 移动
-@app.route('/移动', methods=['GET'])
-def main_information_3():
+# 移动 mobile
+@app.route('/mobile', methods=['GET'])
+def main_information_mobile():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '移动'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '移动' AND DATE > '2020-07-28'
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -180,12 +180,12 @@ def main_information_3():
     return response
 
 #-----------------------------------------------------------------------
-# 海外
-@app.route('/海外', methods=['GET'])
-def main_information_4():
+# 海外 overseas
+@app.route('/overseas', methods=['GET'])
+def main_information_overseas():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '海外'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '海外' AND DATE > '2020-07-28'
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -235,12 +235,12 @@ def main_information_4():
     return response
 
 #-----------------------------------------------------------------------
-# 教育网
-@app.route('/教育网', methods=['GET'])
-def main_information_5():
+# 教育网 Education 
+@app.route('/Education', methods=['GET'])
+def main_information_Education():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '教育网'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '教育网' AND DATE > '2020-07-28'
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -290,12 +290,12 @@ def main_information_5():
     return response
 
 #-----------------------------------------------------------------------
-# 台湾
-@app.route('/台湾', methods=['GET'])
-def main_information_6():
+# 台湾 Taiwan
+@app.route('/Taiwan', methods=['GET'])
+def main_information_Taiwan():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '台湾'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '台湾' AND DATE > '2020-07-28'
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -346,4 +346,4 @@ def main_information_6():
 
 
 if __name__ == "__main__":
-    app.run( host='192.168.0.10',port=5000, debug=True)
+    app.run( host='192.168.25.17',port=5000, debug=True)

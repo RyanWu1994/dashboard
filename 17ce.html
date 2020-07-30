@@ -9,27 +9,30 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
-<style>
-    .container{
-        margin: 50px 0 50px 0;
-    }
-</style>
+    <style>
+        .container {
+            margin: 50px 0 50px 0;
+        }
+    </style>
 
 </head>
 
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 
-
-        <div id="main" class="container" style="width: 1000;height:600px;"></div>
-        <div id="main_2" class="container" style="width: 1000;height:600px;"></div>
-        
+    <div id="main_Telecom" class="container" style="width: 1000px;height:300px;"></div>
+    <div id="main_Unicom" class="container" style="width: 1000px;height:300px;"></div>
+    <div id="main_mobile" class="container" style="width: 1000px;height:300px;"></div>
+    <div id="main_overseas" class="container" style="width: 1000px;height:300px;"></div>
+    <div id="main_Education" class="container" style="width: 1000px;height:300px;"></div>
+    <div id="main_Taiwan" class="container" style="width: 1000px;height:300px;"></div>
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
 
+        //  电信 Telecom
         $.ajax({
-            url: "http://192.168.0.10:5000/电信",
+            url: "http://192.168.25.17:5000/Telecom",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -40,12 +43,12 @@
 
                 console.log(data)
 
-                var myChart = echarts.init(document.getElementById('main'));
+                var myChart = echarts.init(document.getElementById('main_Telecom'));
 
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: '17EC 域名監控 ' + data['URL'] + " 电信"
+                        text: '17EC 域名監控 ' + data['URL'] + " 電信"
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -77,39 +80,36 @@
                         offset: 0
                     },
                     series: [{
-                            name: '最快節點秒數',
-                            type: 'line',
-                            data: data['Fastest_node_seconds'],
-                        },
-                        {
-                            name: '最慢節點秒數',
-                            type: 'line',
-                            data: data['Slowest_node_seconds']
-                        },
-                        {
-                            name: '平均響應',
-                            type: 'line',
-                            data: data['Average_response']
-                        },
+                        name: '最快節點秒數',
+                        type: 'line',
+                        data: data['Fastest_node_seconds'],
+                    },
+                    {
+                        name: '最慢節點秒數',
+                        type: 'line',
+                        data: data['Slowest_node_seconds']
+                    },
+                    {
+                        name: '平均響應',
+                        type: 'line',
+                        data: data['Average_response']
+                    },
 
                     ]
                 };
 
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
-
             },
-
-
             error: function () {
-                alert("發生錯誤")
+                alert("电信 Telecom 發生錯誤")
             }
         });
 
-
-
+        // -----------------------------------------------------------
+        // 联通 Unicom
         $.ajax({
-            url: "http://192.168.0.10:5000/联通",
+            url: "http://192.168.25.17:5000/Unicom",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -120,12 +120,12 @@
 
                 console.log(data)
 
-                var myChart = echarts.init(document.getElementById('main_2'));
+                var myChart = echarts.init(document.getElementById('main_Unicom'));
 
                 // 指定图表的配置项和数据
                 var option = {
                     title: {
-                        text: '17EC 域名監控 ' + data['URL'] + " 联通"
+                        text: '17EC 域名監控 ' + data['URL'] + " 聯通"
                     },
                     tooltip: {
                         trigger: 'axis',
@@ -157,34 +157,340 @@
                         offset: 0
                     },
                     series: [{
-                            name: '最快節點秒數',
-                            type: 'line',
-                            data: data['Fastest_node_seconds'],
-                        },
-                        {
-                            name: '最慢節點秒數',
-                            type: 'line',
-                            data: data['Slowest_node_seconds']
-                        },
-                        {
-                            name: '平均響應',
-                            type: 'line',
-                            data: data['Average_response']
-                        },
+                        name: '最快節點秒數',
+                        type: 'line',
+                        data: data['Fastest_node_seconds'],
+                    },
+                    {
+                        name: '最慢節點秒數',
+                        type: 'line',
+                        data: data['Slowest_node_seconds']
+                    },
+                    {
+                        name: '平均響應',
+                        type: 'line',
+                        data: data['Average_response']
+                    },
 
                     ]
                 };
 
                 // 使用刚指定的配置项和数据显示图表。
                 myChart.setOption(option);
-
             },
-
-
             error: function () {
-                alert("發生錯誤")
+                alert("联通 Unicom 發生錯誤")
             }
         });
+
+        // -----------------------------------------------------------
+        // 移动 mobile
+        $.ajax({
+            url: "http://192.168.25.17:5000/mobile",
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (data) {
+
+                console.log(data)
+
+                var myChart = echarts.init(document.getElementById('main_mobile'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '17EC 域名監控 ' + data['URL'] + " 移動"
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        triggerOn: "mousemove",
+                    },
+                    legend: {
+                        data: ['最快節點秒數', '最慢節點秒數', '平均響應']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: data['Date']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: true,
+                        position: "left",
+                        offset: 0
+                    },
+                    series: [{
+                        name: '最快節點秒數',
+                        type: 'line',
+                        data: data['Fastest_node_seconds'],
+                    },
+                    {
+                        name: '最慢節點秒數',
+                        type: 'line',
+                        data: data['Slowest_node_seconds']
+                    },
+                    {
+                        name: '平均響應',
+                        type: 'line',
+                        data: data['Average_response']
+                    },
+
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            },
+            error: function () {
+                alert("移动 mobile 發生錯誤")
+            }
+        });
+
+        // -----------------------------------------------------------
+        // 海外 overseas
+        $.ajax({
+            url: "http://192.168.25.17:5000/overseas",
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (data) {
+
+                console.log(data)
+
+                var myChart = echarts.init(document.getElementById('main_overseas'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '17EC 域名監控 ' + data['URL'] + " 海外"
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        triggerOn: "mousemove",
+                    },
+                    legend: {
+                        data: ['最快節點秒數', '最慢節點秒數', '平均響應']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: data['Date']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: true,
+                        position: "left",
+                        offset: 0
+                    },
+                    series: [{
+                        name: '最快節點秒數',
+                        type: 'line',
+                        data: data['Fastest_node_seconds'],
+                    },
+                    {
+                        name: '最慢節點秒數',
+                        type: 'line',
+                        data: data['Slowest_node_seconds']
+                    },
+                    {
+                        name: '平均響應',
+                        type: 'line',
+                        data: data['Average_response']
+                    },
+
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            },
+            error: function () {
+                alert("海外 overseas 發生錯誤")
+            }
+        });
+
+        // -----------------------------------------------------------
+        // 教育网 Education
+        $.ajax({
+            url: "http://192.168.25.17:5000/Education",
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (data) {
+
+                console.log(data)
+
+                var myChart = echarts.init(document.getElementById('main_Education'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '17EC 域名監控 ' + data['URL'] + " 教育網"
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        triggerOn: "mousemove",
+                    },
+                    legend: {
+                        data: ['最快節點秒數', '最慢節點秒數', '平均響應']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: data['Date']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: true,
+                        position: "left",
+                        offset: 0
+                    },
+                    series: [{
+                        name: '最快節點秒數',
+                        type: 'line',
+                        data: data['Fastest_node_seconds'],
+                    },
+                    {
+                        name: '最慢節點秒數',
+                        type: 'line',
+                        data: data['Slowest_node_seconds']
+                    },
+                    {
+                        name: '平均響應',
+                        type: 'line',
+                        data: data['Average_response']
+                    },
+
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            },
+            error: function () {
+                alert("教育网 Education 發生錯誤")
+            }
+        });
+
+// -----------------------------------------------------------
+        // 台湾 Taiwan
+        $.ajax({
+            url: "http://192.168.25.17:5000/Taiwan",
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            headers: {
+                'Access-Control-Allow-Origin': '*'
+            },
+            success: function (data) {
+
+                console.log(data)
+
+                var myChart = echarts.init(document.getElementById('main_Taiwan'));
+
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '17EC 域名監控 ' + data['URL'] + " 台灣"
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        triggerOn: "mousemove",
+                    },
+                    legend: {
+                        data: ['最快節點秒數', '最慢節點秒數', '平均響應']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: data['Date']
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: true,
+                        position: "left",
+                        offset: 0
+                    },
+                    series: [{
+                        name: '最快節點秒數',
+                        type: 'line',
+                        data: data['Fastest_node_seconds'],
+                    },
+                    {
+                        name: '最慢節點秒數',
+                        type: 'line',
+                        data: data['Slowest_node_seconds']
+                    },
+                    {
+                        name: '平均響應',
+                        type: 'line',
+                        data: data['Average_response']
+                    },
+
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            },
+            error: function () {
+                alert("台湾 Taiwan 發生錯誤")
+            }
+        });
+
     </script>
 </body>
 
