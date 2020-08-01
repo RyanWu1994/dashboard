@@ -8,10 +8,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
     <style>
-        .container {
-            margin: 50px 0 50px 0;
+        .container-fluid {
+            width: 100%;
+            height: 1000px;
+
+        }
+        .row {
+            display: flex;
+        }
+        .chart {
+            width: 850px;
+            height: 300px;
+            margin: 0 50px 0 50px;
         }
     </style>
 
@@ -19,20 +33,29 @@
 
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class="container-fluid">
+        <div class="row">
+            <div id="main_Telecom" class="chart"></div>
+            <div id="main_Unicom" class="chart"></div>
+        </div>
+        <div class="row">
+            <div id="main_mobile" class="chart"></div>
+            <div id="main_overseas" class="chart"></div>
+        </div>
+        <div class="row">
+            <div id="main_Education" class="chart"></div>
+            <div id="main_Taiwan" class="chart"></div>
+        </div>
 
-    <div id="main_Telecom" class="container" style="width: 1000px;height:300px;"></div>
-    <div id="main_Unicom" class="container" style="width: 1000px;height:300px;"></div>
-    <div id="main_mobile" class="container" style="width: 1000px;height:300px;"></div>
-    <div id="main_overseas" class="container" style="width: 1000px;height:300px;"></div>
-    <div id="main_Education" class="container" style="width: 1000px;height:300px;"></div>
-    <div id="main_Taiwan" class="container" style="width: 1000px;height:300px;"></div>
+
+    </div>
 
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
 
         //  电信 Telecom
         $.ajax({
-            url: "http://192.168.25.14:5000/Telecom",
+            url: "http://192.168.25.17:5000/Telecom",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -109,7 +132,7 @@
         // -----------------------------------------------------------
         // 联通 Unicom
         $.ajax({
-            url: "http://192.168.25.14:5000/Unicom",
+            url: "http://192.168.25.17:5000/Unicom",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -186,7 +209,7 @@
         // -----------------------------------------------------------
         // 移动 mobile
         $.ajax({
-            url: "http://192.168.25.14:5000/mobile",
+            url: "http://192.168.25.17:5000/mobile",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -263,7 +286,7 @@
         // -----------------------------------------------------------
         // 海外 overseas
         $.ajax({
-            url: "http://192.168.25.14:5000/overseas",
+            url: "http://192.168.25.17:5000/overseas",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -340,7 +363,7 @@
         // -----------------------------------------------------------
         // 教育网 Education
         $.ajax({
-            url: "http://192.168.25.14:5000/Education",
+            url: "http://192.168.25.17:5000/Education",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
@@ -414,10 +437,10 @@
             }
         });
 
-// -----------------------------------------------------------
+        // -----------------------------------------------------------
         // 台湾 Taiwan
         $.ajax({
-            url: "http://192.168.25.14:5000/Taiwan",
+            url: "http://192.168.25.17:5000/Taiwan",
             method: "GET",
             crossDomain: true,
             dataType: 'json',
