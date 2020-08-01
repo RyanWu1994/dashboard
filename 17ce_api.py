@@ -20,7 +20,7 @@ db = SQLAlchemy(app)
 def main_information_Telecom():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '电信' AND DATE > '2020-07-28'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '电信' AND DATE > date_sub(now(), INTERVAL 64 hour)
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -75,7 +75,7 @@ def main_information_Telecom():
 def main_information_Unicom():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '联通' AND DATE > '2020-07-28'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '联通' AND DATE > date_sub(now(), INTERVAL 64 hour)
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -130,7 +130,7 @@ def main_information_Unicom():
 def main_information_mobile():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '移动' AND DATE > '2020-07-28'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '移动' AND DATE > date_sub(now(), INTERVAL 64 hour)
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -185,7 +185,7 @@ def main_information_mobile():
 def main_information_overseas():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '海外' AND DATE > '2020-07-28'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '海外' AND DATE > date_sub(now(), INTERVAL 64 hour)
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -240,7 +240,7 @@ def main_information_overseas():
 def main_information_Education():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '教育网' AND DATE > '2020-07-28'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '教育网' AND DATE > date_sub(now(), INTERVAL 64 hour)
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -295,7 +295,7 @@ def main_information_Education():
 def main_information_Taiwan():
 
     sql_cmd = """
-        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '台湾' AND DATE > '2020-07-28'
+        SELECT * from main_information WHERE URL = 'smtv.io' AND Line = '台湾' AND DATE > date_sub(now(), INTERVAL 64 hour)
         """
     query_data = db.engine.execute(sql_cmd)
     date = query_data.fetchall()
@@ -346,4 +346,4 @@ def main_information_Taiwan():
 
 
 if __name__ == "__main__":
-    app.run( host='192.168.25.14',port=5000, debug=True)
+    app.run( host='192.168.25.17',port=5000, debug=True)
