@@ -346,4 +346,4 @@ def main_information_Taiwan():
 
 
 if __name__ == "__main__":
-    app.run( host='192.168.25.17',port=5000, debug=True)
+    app.run( host='192.168.22.110',port=5000, debug=True)
