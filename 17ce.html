@@ -8,24 +8,45 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.8.0/echarts.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
-    <style>
-        .container-fluid {
-            width: 100%;
-            height: 1000px;
 
+
+    <style>
+        * {
+            box-sizing: border-box;
         }
+
+        .container {
+            max-width: 100%;
+            margin: 10px auto;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
         .row {
             display: flex;
+            margin-left: -15px;
+            margin-right: -15px;
+            flex-wrap: wrap;
         }
+
+
+        .col-6 {
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 50%;
+            padding: 10px;
+        }
+
+        @media(max-width:1728px) {
+            .col-6 {
+                width: 100%;
+            }
+        }
+
         .chart {
-            width: 850px;
-            height: 300px;
-            margin: 0 50px 0 50px;
+            width: 100%;
+            height: 280px;
+            /* margin: 10px 0 0 30px; */
         }
     </style>
 
@@ -33,18 +54,32 @@
 
 <body>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div id="main_Telecom" class="chart"></div>
-            <div id="main_Unicom" class="chart"></div>
+            <div class="col-6">
+                <div id="main_Telecom" class="chart"></div>
+            </div>
+            <div class="col-6">
+                <div id="main_Unicom" class="chart"></div>
+            </div>
+
         </div>
         <div class="row">
-            <div id="main_mobile" class="chart"></div>
-            <div id="main_overseas" class="chart"></div>
+            <div class="col-6">
+                <div id="main_mobile" class="chart"></div>
+            </div>
+            <div class="col-6">
+                <div id="main_overseas" class="chart"></div>
+            </div>
+
         </div>
         <div class="row">
-            <div id="main_Education" class="chart"></div>
-            <div id="main_Taiwan" class="chart"></div>
+            <div class="col-6">
+                <div id="main_Education" class="chart"></div>
+            </div>
+            <div class="col-6">
+                <div id="main_Taiwan" class="chart"></div>
+            </div>
         </div>
 
 
@@ -514,6 +549,10 @@
             }
         });
 
+    </script>
+
+    <script language="javascript">
+        setTimeout("self.location.reload();", 300000);
     </script>
 </body>
 
